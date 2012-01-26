@@ -1,0 +1,32 @@
+#/usr/local/bin/python
+
+import sys, time, os.path
+from server import *
+from daemon import Daemon
+ 
+class DeepCuts(Daemon):
+  def run(self):
+    application = web.Application([
+      (r"/werw_mq/([a-z0-9]+)", MessageHandler),
+      (r"/link/([a-z0-9]+)", LinkHandler),
+    ])
+    application.listen(8888)
+    ioloop.IOLoop.instance().start()
+ 
+if __name__ == "__main__":
+  path = os.path.dirname(os.path.abspath(__file__))
+  daemon = DeepCuts('%s/tmp/server.pid' %path)
+  if len(sys.argv) == 2:
+    if 'start' == sys.argv[1]:
+      daemon.start()
+    elif 'stop' == sys.argv[1]:
+      daemon.stop()
+    elif 'restart' == sys.argv[1]:
+      daemon.restart()
+    else:
+      print "Unknown command"
+      sys.exit(2)
+    sys.exit(0)
+  else:
+    print "usage: %s start|stop|restart [environment]" % sys.argv[0]
+    sys.exit(2)

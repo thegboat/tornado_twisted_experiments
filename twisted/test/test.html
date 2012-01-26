@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="keywords" content="..." />
+  <meta name="description" content="..." />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+</head>
+<body>
+  <form id="messages" action="http://localhost:8880/2001" target="#">
+  <label>type: </label>
+  <select>
+    <option value="push">Push</option>
+    <option value="in_app">In App</option>
+    <option value="advertiser">Advertiser</option>
+    <option value="patron">Patron</option>
+  </select>
+  <br />
+  <label>message</label><input type="text" id="message" name="message"/><br />
+  </form>
+  <input type="button" value="submit" onclick="$('#messages').submit()">
+</body>
+</html>
